@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WhatsApp Link Generator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+	<div class="container align-center">
+		<div class="row justify-content-md-center">
+          <div class="col-md-6" style="overflow-x: hidden;">
+          	<div class="py-5 text-center">
+				<img class="d-block mx-auto mb-4" src="https://cdn3.iconfinder.com/data/icons/social-network-30/512/social-01-512.png" alt="" width="72" height="72">
+				<h2>WhatsApp Link Generator</h2>
+				<p class="lead">A simple tool to generate auto-shareable links on WhatsApp. Just fill in the columns below and generate the link.</p>
+				<a id="final-link" target="_blank" href="" class="mt-4" style="font-size: 20px; color: #62d467; display: none;"></a>
+			</div>
+          	<div class="row">
+				<div class="col-md-3 mb-3">
+					<label for="firstName">Country Code</label>
+					<input type="text" class="form-control" id="countrycode" value="91" placeholder="Country code" required>
+				</div>
+				<div class="col-md-9 mb-3">
+					<label for="lastName">Phone Number</label>
+					<input type="text" class="form-control" id="phone" placeholder="" value="8281908756" placeholder="Phone number here..." required>
+				</div>
+				<div class="col-md-12 mb-3 mt-4">
+					<label for="lastName">Message Content</label>
+					<textarea class="form-control" id="content" rows="5" placeholder="Type your content here..."></textarea>
+				</div>
+				<div class="col-md-12">
+					<button id="cta" class="btn btn-primary btn-lg btn-block mt-2" onclick="generateLink()">Generate Link</button>				
+				</div>
+          	</div>
+          </div>
+        </div>
+
+	</div>
+
+
+	<script type="text/javascript">
+		function generateLink(){
+			var text = document.getElementById("content").value;
+			var countrycode = document.getElementById("countrycode").value;
+			var phone = document.getElementById("phone").value;
+			console.log(text);
+			var link = "https://api.whatsapp.com/send?phone=" + countrycode + phone + "&text=" + encodeURIComponent(text);
+			document.getElementById("final-link").innerHTML = link;
+			document.getElementById("final-link").href = link;
+			document.getElementById("final-link").style.display = "block";
+		}
+	</script>
+</body>
+</html>
